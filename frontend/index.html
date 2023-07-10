@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warehouse</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+
+    <script src="index.js" defer></script>
+    <script src="indexWh.js" defer></script>  
+</head>
+<body>
+    
+    <a href="index2.html">Google Maps</a><br>
+    <a href="test1.html">Gt1</a><br>
+
+                <!-- UPDATE MOVIE FORM -->
+                <!-- style="display: none;" makes it so that the DOM does not render this tag-->
+                <form id="update-electronic-form" action="#" style="display: none;">   <!-- action="#" prevents page redirections when form is submited -->
+
+                    <div class="form-group">
+                        <label>electronic ID</label>
+
+                        <!--  disabling this field so the user cannot modify the id -->
+                        <input id="update-electronic-id" name="update-electronic-id" type="text" class="form-control" disabled/> 
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Type</label>
+                        <input id="update-electronic-type" name="update-electronic-type" type="text" class="form-control" required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Model</label>
+                        <input id="update-electronic-model" name="update-electronic-model" type="text" class="form-control"  required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Year</label>
+                        <input id="update-electronic-year" name="update-electronic-year" type="number" class="form-control" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>Price</label>
+                        <input id="update-electronic-price" name="update-electronic-price" type="number" step=0.01 class="form-control" required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>WarehouseID</label>
+                        <input id="update-electronic-warehouseID" name="update-electronic-warehouseID" type="number" class="form-control"required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Quantity</label>
+                        <input id="update-electronic-quantity" name="update-electronic-quantity" type="number" class="form-control" required/>
+                    </div>
+
+
+                    <div class="form-group">
+                        <button id="update-cancel-button" class="btn btn-secondary">Cancel</button>
+                    </div>
+
+                    <div class="form-group">
+                        <input id="update-button" name="update-button" type="submit" value="Update" class="btn btn-primary" />
+                    </div>
+
+                </form>
+
+                <!-- DELETE MOVIE FORM -->
+                <!-- style="display: none;" makes it so that the DOM does not render this tag-->
+                <form id="delete-electronic-form" action="#" style="display: none;">   <!-- action="#" prevents page redirections when form is submited -->
+
+                    <div class="form-group">
+                        <label>electronic ID</label>
+
+                        <!--  disabling this field so the user cannot modify the id -->
+                        <input id="delete-electronic-id" name="delete-electronic-id" type="text" class="form-control" disabled/> 
+                    </div>
+                    
+                
+
+                    <div class="form-group">
+                        <button id="delete-cancel-button" class="btn btn-secondary">Cancel</button>
+                    </div>
+
+                    <div class="form-group">
+                        <input id="delete-button" name="delete-button" type="submit" value="Delete" class="btn btn-primary" />
+                    </div>
+
+                </form>
+
+            </div>
+
+            
+
+        </div>
+    </div>
+            
+            <!-- tables takes up the other 6 columns -->
+            <div class="col-lg-10">
+
+                <table class="table table-primary table-hover">
+
+                    <thead>
+                        <tr>
+                            <th>electronicID</th>     <!-- no need to display to users -->
+                            <th>model</th>
+                            <th>type</th>
+                            <th>year</th>
+                            <th>price</th>
+                            <th>location</th> 
+                            <th>quantity</th> 
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody id="electronic-table-body">
+                        <!-- we wil add rows dynamically using js -->
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container-fluid">
+
+        <h1 class="h1">Movies API</h1>
+
+        <!-- row so my table and form are next to each other -->
+        <div class="row">   
+
+            <!-- form takes up 6 columns (half the page) -->
+            <div class="col-lg-6">
+
+                <!--NEW MOVIE FORM-->
+                <form   id="new-electronic-form" action="#">   <!-- action="#" prevents page redirections when form is submited -->
+
+                    <div class="form-group">
+                        <label>Type</label>
+                        <input id="new-electronic-type" name="new-electronic-type" type="text" class="form-control" required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Model</label>
+                        <input id="new-electronic-model" name="new-electronic-model" type="text" class="form-control"  required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Year</label>
+                        <input id="new-electronic-year" name="new-electronic-year" type="number" class="form-control" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>Price</label>
+                        <input id="new-electronic-price" name="new-electronic-price" type="number" step=0.01 class="form-control" required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>WarehouseID</label>
+                        <input id="new-electronic-warehouseID" name="new-electronic-warehouseID" type="number" class="form-control"required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Quantity</label>
+                        <input id="new-electronic-quantity" name="new-electronic-quantity" type="number" class="form-control" required/>
+                    </div>
+
+
+                    <div class="form-group">
+                        <input id="save-button" name="save-button" type="submit" value="Save"  class="btn btn-primary"  />
+                    </div>
+
+                </form>
+    
+    
+</body>
+</html>
