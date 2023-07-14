@@ -37,7 +37,7 @@ public class WarehouseService {
           Optional<Warehouse> w  = warehouseRepository.findById(id);
             System.out.println("wae" + w);
             if (w.get().getElectronic().size() != 0){
-                m.setInfo("warehouse: " + id + " has items please move all item to another warehouse" );
+                m.setInfo("warehouse: " + id + " has items please remove all item " );
                 return m;
             }
             m.setInfo(" warehouse: " + id +" has been deleted");

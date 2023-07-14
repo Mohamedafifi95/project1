@@ -49,7 +49,7 @@ public class ElectronicsService {
             int maxQuantaty = maxC - currentStock;
 
             if (currentQuantity + currentStock < maxC) {
-                m.setInfo("id : "+ electronic.getId() +" saved successfully");
+                m.setInfo(" saved successfully");
                 warehouseRepository.updateAvailable(currentQuantity, electronic.getWarehouseID());
                 electronicRepository.save(electronic);
                 return m;

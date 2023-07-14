@@ -39,6 +39,12 @@ public class WarehouseController {
 
         return warehouseService.newWarehouse(warehouse);
     }
+    @PutMapping("/update")
+    public Message updateWarehous(@Valid @RequestBody Warehouse warehouse) {
+
+
+        return warehouseService.newWarehouse(warehouse);
+    }
     @DeleteMapping("/delete/{id}")
     public Message deleteByID(@PathVariable int id) {
 

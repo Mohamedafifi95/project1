@@ -40,7 +40,14 @@ public class ElectronicsController {
     public Message createElectronic(@Valid @RequestBody Electronic electronic) throws Exception {
 
 
-//        Electronic newElectronic = electronicsService.saveElectronics(electronic);
+
+        return electronicsService.saveElectronics(electronic);
+    }
+    @PutMapping("/update")
+    public Message updateElectronic(@Valid @RequestBody Electronic electronic) throws Exception {
+
+
+
         return electronicsService.saveElectronics(electronic);
     }
 
