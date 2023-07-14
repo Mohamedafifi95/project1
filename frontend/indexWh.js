@@ -131,7 +131,7 @@ function activateEditForm(warehouseId) {
     }
 
     // showing only the edit form
-    document.getElementById('new-warehouse-form').style.display = 'none';
+    
     document.getElementById('update-warehouse-form').style.display = 'block';   // block is the default for showing a tag
     document.getElementById('delete-warehouse-form').style.display = 'none';
 
@@ -146,11 +146,12 @@ function activateDeleteForm(warehouseId) {
     }
 
   
-    document.getElementById('new-warehouse-form').style.display = 'none';
+    document.getElementById('update-warehouse-form').style.display = 'none';
     
     document.getElementById('delete-warehouse-form').style.display = 'block';   
     
 }
+
 
 
 
@@ -215,8 +216,6 @@ async function doPostRequest(updateWarehouse) {
   let warehouseJson = await returnedData.json();
 
 document.getElementById('response-warehouse-container-update').innerText = JSON.stringify(warehouseJson.info);
-//   console.log(
-//        document.getElementById('response-container').innerText = JSON.stringify(warehouseJson.info)
-//       )
-//    document.getElementById('update-warehouse-form').reset();
+
+   document.getElementById('update-warehouse-form').reset();
 }

@@ -149,7 +149,7 @@ function activateEditForm(electronicId) {
     }
 
     // showing only the edit form
-    document.getElementById('new-electronic-form').style.display = 'none';
+    // document.getElementById('new-electronic-form').style.display = 'none';
     document.getElementById('update-electronic-form').style.display = 'block';   // block is the default for showing a tag
     document.getElementById('delete-electronic-form').style.display = 'none';
 
@@ -161,12 +161,13 @@ function activateDeleteForm(electronicId) {
         if(e.id === electronicId) {
             document.getElementById('delete-electronic-id').value = e.id;
             
+            
         }
     }
 
   
-    document.getElementById('new-electronic-form').style.display = 'none';
-    
+    // document.getElementById('new-electronic-form').style.display = 'none';
+    document.getElementById('update-electronic-form').style.display = 'none';
     document.getElementById('delete-electronic-form').style.display = 'block';   // block is the default for showing a tag
     
 }
@@ -193,15 +194,7 @@ function activateDeleteForm(electronicId) {
     }).then((response) => response.json())
     .then((data) => {
         document.getElementById('response-container-delete').innerText = data.info;
-        // Additional code here
-    
-        
-        
-        //   if(data.status === 200) {
-           
-            
-        //     resetAllForms();
-        // }
+       
     })
     .catch((error) => {
         console.error(error);   
@@ -219,7 +212,7 @@ document.getElementById('update-electronic-form').addEventListener('submit', (ev
       model : inputData.get('update-electronic-model'),
       year : inputData.get('update-electronic-year'),         
       price : inputData.get('update-electronic-price'), 
-      warehouseID : inputData.get('update-electronic-warehouseID'),        
+      warehouseID : document.getElementById('update-electronic-warehouseID').value,        
       quantity : inputData.get('update-electronic-quantity')
       
   }
@@ -249,5 +242,5 @@ console.log("aa")
 //     document.getElementById('response-container').innerText = JSON.stringify(electronicJson.info)
 //   )
   
-//    document.getElementById('update-electronic-form').reset();
+   document.getElementById('update-electronic-form').reset();
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Warehouse</title>
+    <title>Electronics</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -15,15 +15,19 @@
         background-color: #fff;
         border-bottom: 1px solid #ddd;
     }
-    .btn-primary{
-        margin-left: 10px;
+    
+    h1{
+        margin-left: 500px;
     }
 
     .navbar-brand img {
         height: 30px;
         width: auto;
     }
-
+    #new-btn{
+        margin-left: 10px;
+    }   
+    
     .navbar-nav .nav-link {
         color: #333;
     }
@@ -34,10 +38,10 @@
     
     /* Style the forms */
     form {
-        background-color: #fff;
+        
         padding: 20px;
         border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        
     }
     h4{
         color: red;
@@ -70,7 +74,14 @@
         background-color: #555e65;
         border-color: #555e65;
     }
-
+    #delete-frm{
+        margin-left: 400px;
+        background-color: lightgrey;
+    }
+    #updt-frm {
+        margin-left: 300px;
+        background-color: lightgrey;
+    }
 
     </style>
     
@@ -80,7 +91,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Logo</a>
+        <a class="navbar-brand" href="#">All Electronics</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -103,18 +114,19 @@
 
 <br/><br/><br/><br/>
 
-    
+    <h1> BestSell Company</h1>
+    <br/><br/><br/><br/>
     <!-- <a href="test1.html">Gt1</a><br> -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pop-up-form-modal">
+    <button type="button" id = "new-btn" class="btn btn-secondary" data-toggle="modal" data-target="#pop-up-form-modal">
         add new device
     </button> 
     <br/><br/>
     
     <h4 id="response-container-new2"></h4>
-
+        <div id = updt-frm class="col-lg-6">
                 <!-- style="display: none;" makes it so that the DOM does not render this tag-->
                 <form id="update-electronic-form" action="#" style="display: none;">   <!-- action="#" prevents page redirections when form is submited -->
-
+                    <h3>Update Form</h3>
                     <div class="form-group">
                         <label>electronic ID</label>
 
@@ -143,7 +155,7 @@
 
                     <div class="form-group">
                         <label>WarehouseID</label>
-                        <input id="update-electronic-warehouseID" name="update-electronic-warehouseID" type="number" class="form-control"required/>
+                        <input id="update-electronic-warehouseID" name="update-electronic-warehouseID" type="number" class="form-control" disabled/>
                     </div>
 
                     <div class="form-group">
@@ -162,13 +174,13 @@
                     </div>
                     
                 </form>
-
+        </div>
     <h4 id="response-container-update"></h4>
-
+            <div id = delete-frm class="col-lg-4">
                 
                 <!-- style="display: none;" makes it so that the DOM does not render this tag-->
                 <form id="delete-electronic-form" action="#" style="display: none;">   <!-- action="#" prevents page redirections when form is submited -->
-
+                    <h3> Delete Form</h3>
                     <div class="form-group">
                         <label>electronic ID</label>
 
@@ -187,10 +199,10 @@
                     </div>
                        
                 </form>
-
+            </div>
             
             <!-- tables takes up the other 6 columns -->
-            <div class="col-lg-10">
+            <div class="col-lg-12">
 
                 <table class="table table-primary table-hover">
 
@@ -232,7 +244,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="pop-up-form-title">Pop-up Form</h5>
+                        <h5 class="modal-title" id="pop-up-form-title"> New Electronic</h5>
                        
                     </div>
                     <div class="row">   
