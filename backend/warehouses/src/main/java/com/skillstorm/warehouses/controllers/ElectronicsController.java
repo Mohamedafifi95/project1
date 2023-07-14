@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/electronics")
+@CrossOrigin
 public class ElectronicsController {
     
 
@@ -36,11 +37,11 @@ public class ElectronicsController {
         return electronicsService.deleteById(id);
     }
     @PostMapping("/add")
-    public ResponseEntity<Electronic> createMovie(@Valid @RequestBody Electronic electronic) {
+    public Message createElectronic(@Valid @RequestBody Electronic electronic) throws Exception {
 
 
-        Electronic newElectronic = electronicsService.saveElectronics(electronic);
-        return new ResponseEntity<Electronic>(newElectronic, HttpStatus.CREATED);
+//        Electronic newElectronic = electronicsService.saveElectronics(electronic);
+        return electronicsService.saveElectronics(electronic);
     }
 
 

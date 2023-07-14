@@ -22,44 +22,50 @@ document.addEventListener('DOMContentLoaded', () => {
     xhr.send();
 });
 
+
+
 document.getElementById('new-electronic-form').addEventListener('submit', (event) => {
-
-      event.preventDefault();         
+    event.preventDefault();
     let inputData = new FormData(document.getElementById('new-electronic-form'));
-
-    let newElectronic = {
-    
+  
+    let newElectronic= {
         type : inputData.get('new-electronic-type'),         
         model : inputData.get('new-electronic-model'),
         year : inputData.get('new-electronic-year'),         
         price : inputData.get('new-electronic-price'), 
         warehouseID : inputData.get('new-electronic-warehouseID'),        
         quantity : inputData.get('new-electronic-quantity')
-        
     }
-
-
-   
+  
     doPostRequest(newElectronic);
-
-});
-
-async function doPostRequest(newElectronic) {
-
-    let returnedData = await fetch(URL + '/electronics/add', {
-        method : 'POST',
-        headers : {
-            'Content-Type' : 'application/json'         
+  });
+  
+  async function doPostRequest(newElectronic) {
+    try {
+      let returnedData = await fetch(URL + '/electronics/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
         },
-        body : JSON.stringify(newElectronic)      
-    });
+        body: JSON.stringify(newElectronic)
+      });
+  
+      
+        console.log("aa")
+        let electronicJson = await returnedData.json();
+        console.log(electronicJson)
+        document.getElementById('response-container-new').textContent = JSON.stringify(electronicJson.info);
+        // document.getElementById('response-container-new').innerText = JSON.stringify(electronicJson.info);
+      } 
+    catch (error) {
+      console.error('Error:', error);
+    }
+  }
+  
+  
+  
 
-    let electroniceJson = await returnedData.json();
 
-
-
-     document.getElementById('new-electronic-form').reset();
-}
 
 function addElectronicToTable(location, electronic) {
     let tr = document.createElement('tr');
@@ -173,30 +179,34 @@ function activateDeleteForm(electronicId) {
 
 
 
-document.getElementById('delete-electronic-form').addEventListener('submit', (event) => {
+  document.getElementById('delete-electronic-form').addEventListener('submit', (event) => {
     event.preventDefault();		
     let electronicId = document.getElementById('delete-electronic-id').value;
     
 
     
-    fetch(URL + '/electronics/delete/' + electronicId, {
+     fetch(URL + '/electronics/delete/' + electronicId, {
         method : 'DELETE',
         headers: {
             "Content-Type": "application/json",
         }
-    })
+    }).then((response) => response.json())
     .then((data) => {
-
-          if(data.status === 200) {
+        document.getElementById('response-container-delete').innerText = data.info;
+        // Additional code here
+    
+        
+        
+        //   if(data.status === 200) {
            
             
-            resetAllForms();
-        }
+        //     resetAllForms();
+        // }
     })
     .catch((error) => {
         console.error(error);   
     })
-
+    
 });
 document.getElementById('update-electronic-form').addEventListener('submit', (event) => {
 
@@ -229,10 +239,15 @@ async function doPostRequest(updateElectronic) {
       },
       body : JSON.stringify(updateElectronic)      
   });
+console.log("aa")
+  let electronicJson = await returnedData.json();
 
-  let electroniceJson = await returnedData.json();
+  console.log(electronicJson)
+  document.getElementById('response-container-update').innerText = JSON.stringify(electronicJson.info);
 
-
-
-   document.getElementById('update-electronic-form').reset();
+// console.log(
+//     document.getElementById('response-container').innerText = JSON.stringify(electronicJson.info)
+//   )
+  
+//    document.getElementById('update-electronic-form').reset();
 }

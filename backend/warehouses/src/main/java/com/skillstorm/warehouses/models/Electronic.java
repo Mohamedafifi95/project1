@@ -84,19 +84,6 @@ public class Electronic {
     }
 
     @Override
-    public String toString() {
-        return "Electronic{" +
-                "id=" + id +
-                ", type='" + type + '\'' +
-                ", model='" + model + '\'' +
-                ", year=" + year +
-                ", price=" + price +
-                ", warehouseID=" + warehouseID +
-                ", quantity=" + quantity +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Electronic)) return false;

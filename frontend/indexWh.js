@@ -21,61 +21,69 @@ document.addEventListener('DOMContentLoaded', () => {
     xhr.send();
 });
 
+// ...
+
 document.getElementById('new-warehouse-form').addEventListener('submit', (event) => {
-
-      event.preventDefault();         
+    event.preventDefault();
     let inputData = new FormData(document.getElementById('new-warehouse-form'));
-
+  
     let newWarehouse = {
-    
-        location : inputData.get('new-warehouse-location'),         
-        maxCapacity : inputData.get('new-warehouse-maxCapacity'),
-        
-        
+      location: inputData.get('new-warehouse-location'),
+      maxCapacity: inputData.get('new-warehouse-maxCapacity'),
     }
-
-
-   
+  
     doPostRequest(newWarehouse);
-
-});
-
-async function doPostRequest(newWarehouse) {
-
-    let returnedData = await fetch(URL2 + '/warehouses/add', {
-        method : 'POST',
-        headers : {
-            'Content-Type' : 'application/json'         
+  });
+  
+  async function doPostRequest(newWarehouse) {
+    try {
+      let returnedData = await fetch(URL2 + '/warehouses/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
         },
-        body : JSON.stringify(newWarehouse)      
-    });
-
-    let warehouseJson = await returnedData.json();
-
-
-
-     document.getElementById('new-newWarehouse-form').reset();
-}
+        body: JSON.stringify(newWarehouse)
+      });
+  
+      if (returnedData.ok) {
+        let warehouseJson = await returnedData.json();
+        document.getElementById('response-warehouse-container-new').textContent = JSON.stringify(warehouseJson.info);
+      } else {
+        console.error('Request failed with status:', returnedData.status);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+  
+  // ...
+  
 
 function addWarehouseToTable(newWarehouse) {
     let tr = document.createElement('tr');
     let locationCell = document.createElement('td');
     let id = document.createElement('td');
     let maxCapacity = document.createElement('td');
+    let currentStock = document.createElement('td');
     let editBtn = document.createElement('td');
     let deleteBtn = document.createElement('td');
+    
 
     locationCell.innerText = newWarehouse.location;
     id.innerText = newWarehouse.id;
     maxCapacity.innerText = newWarehouse.maxCapacity;
+    currentStock.innerText = newWarehouse.currentStock;
     
 
     editBtn.innerHTML = `<button class="btn btn-primary" id="edit-button" onclick="activateEditForm(${newWarehouse.id})">Edit</button>`;
+    // editBtn1.innerHTML = `<button class="btn btn-primary" id="edit-button" onclick="activateEditForm(${newWarehouse.id})">Edit</button>`;
+   
     deleteBtn.innerHTML = `<button class="btn btn-primary" id="delete-button" onclick="activateDeleteForm(${newWarehouse.id})">Delete</button>`;
 
     tr.appendChild(id);
     tr.appendChild(locationCell);
     tr.appendChild(maxCapacity);
+    tr.appendChild(currentStock);
     tr.appendChild(editBtn);
     tr.appendChild(deleteBtn);
 
@@ -117,6 +125,7 @@ function activateEditForm(warehouseId) {
             document.getElementById('update-warehouse-id').value = w.id;
             document.getElementById('update-warehouse-location').value = w.location;
             document.getElementById('update-warehouse-maxCapacity').value = w.maxCapacity;
+            document.getElementById('update-warehouse-currentStock').value = w.currentStock;
             
         }
     }
@@ -162,14 +171,9 @@ document.getElementById('delete-warehouse-form').addEventListener('submit', (eve
         headers: {
             "Content-Type": "application/json",
         }
-    })
+    }).then((response) => response.json())
     .then((data) => {
-
-          if(data.status === 200) {
-           
-            
-            resetAllForms();
-        }
+        document.getElementById('response-warehouse-container-delete').innerText = data.info;
     })
     .catch((error) => {
         console.error(error);   
@@ -184,8 +188,10 @@ document.getElementById('update-warehouse-form').addEventListener('submit', (eve
 
   let updateWarehouse = {
       id : document.getElementById('update-warehouse-id').value, 
+      currentStock : document.getElementById('update-warehouse-currentStock').value,
       location : inputData.get('update-warehouse-location'),         
       maxCapacity : inputData.get('update-warehouse-maxCapacity')
+      
      
       
   }
@@ -208,7 +214,9 @@ async function doPostRequest(updateWarehouse) {
 
   let warehouseJson = await returnedData.json();
 
-
-
-   document.getElementById('update-warehouse-form').reset();
+document.getElementById('response-warehouse-container-update').innerText = JSON.stringify(warehouseJson.info);
+//   console.log(
+//        document.getElementById('response-container').innerText = JSON.stringify(warehouseJson.info)
+//       )
+//    document.getElementById('update-warehouse-form').reset();
 }

@@ -6,17 +6,112 @@
     <title>Warehouse</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f2f2f2;
+        }
+        .navbar {
+        background-color: #fff;
+        border-bottom: 1px solid #ddd;
+    }
+    .btn-primary{
+        margin-left: 10px;
+    }
 
+    .navbar-brand img {
+        height: 30px;
+        width: auto;
+    }
+
+    .navbar-nav .nav-link {
+        color: #333;
+    }
+
+    .navbar-nav .nav-link:hover {
+        color: #666;
+    }
+    
+    /* Style the forms */
+    form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    h4{
+        color: red;
+    }
+
+    /* Style the tables */
+    table {
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Style the buttons */
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }
+
+    .btn-secondary:hover {
+        background-color: #555e65;
+        border-color: #555e65;
+    }
+
+
+    </style>
+    
 
     <script src="index.js" defer></script>
-    <script src="indexWh.js" defer></script>  
+    <!-- <script src="indexWh.js" defer></script>   -->
 </head>
 <body>
-    
-    <a href="index2.html">Google Maps</a><br>
-    <a href="test1.html">Gt1</a><br>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Logo</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index2.html">warehouses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">electronics</a>
+                </li>
+                
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-                <!-- UPDATE MOVIE FORM -->
+<br/><br/><br/><br/>
+
+    
+    <!-- <a href="test1.html">Gt1</a><br> -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pop-up-form-modal">
+        add new device
+    </button> 
+    <br/><br/>
+    
+    <h4 id="response-container-new2"></h4>
+
                 <!-- style="display: none;" makes it so that the DOM does not render this tag-->
                 <form id="update-electronic-form" action="#" style="display: none;">   <!-- action="#" prevents page redirections when form is submited -->
 
@@ -55,7 +150,8 @@
                         <label>Quantity</label>
                         <input id="update-electronic-quantity" name="update-electronic-quantity" type="number" class="form-control" required/>
                     </div>
-
+                   
+                    
 
                     <div class="form-group">
                         <button id="update-cancel-button" class="btn btn-secondary">Cancel</button>
@@ -64,10 +160,12 @@
                     <div class="form-group">
                         <input id="update-button" name="update-button" type="submit" value="Update" class="btn btn-primary" />
                     </div>
-
+                    
                 </form>
 
-                <!-- DELETE MOVIE FORM -->
+    <h4 id="response-container-update"></h4>
+
+                
                 <!-- style="display: none;" makes it so that the DOM does not render this tag-->
                 <form id="delete-electronic-form" action="#" style="display: none;">   <!-- action="#" prevents page redirections when form is submited -->
 
@@ -79,7 +177,7 @@
                     </div>
                     
                 
-
+                    <h4 id = "response-container-delete"></h4>
                     <div class="form-group">
                         <button id="delete-cancel-button" class="btn btn-secondary">Cancel</button>
                     </div>
@@ -87,15 +185,9 @@
                     <div class="form-group">
                         <input id="delete-button" name="delete-button" type="submit" value="Delete" class="btn btn-primary" />
                     </div>
-
+                       
                 </form>
 
-            </div>
-
-            
-
-        </div>
-    </div>
             
             <!-- tables takes up the other 6 columns -->
             <div class="col-lg-10">
@@ -125,55 +217,79 @@
         </div>
     </div>
 
+        
+
+        
+
+
+        
+    
+    
+                
+            
     <div class="container-fluid">
-
-        <h1 class="h1">Movies API</h1>
-
-        <!-- row so my table and form are next to each other -->
-        <div class="row">   
-
-            <!-- form takes up 6 columns (half the page) -->
-            <div class="col-lg-6">
-
-                <!--NEW MOVIE FORM-->
-                <form   id="new-electronic-form" action="#">   <!-- action="#" prevents page redirections when form is submited -->
-
-                    <div class="form-group">
-                        <label>Type</label>
-                        <input id="new-electronic-type" name="new-electronic-type" type="text" class="form-control" required/>
+        <div class="modal fade" id="pop-up-form-modal" tabindex="-1" role="dialog" aria-labelledby="pop-up-form-title" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="pop-up-form-title">Pop-up Form</h5>
+                       
                     </div>
-
-                    <div class="form-group">
-                        <label>Model</label>
-                        <input id="new-electronic-model" name="new-electronic-model" type="text" class="form-control"  required/>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Year</label>
-                        <input id="new-electronic-year" name="new-electronic-year" type="number" class="form-control" required/>
-                    </div>
-                    <div class="form-group">
-                        <label>Price</label>
-                        <input id="new-electronic-price" name="new-electronic-price" type="number" step=0.01 class="form-control" required/>
-                    </div>
-
-                    <div class="form-group">
-                        <label>WarehouseID</label>
-                        <input id="new-electronic-warehouseID" name="new-electronic-warehouseID" type="number" class="form-control"required/>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Quantity</label>
-                        <input id="new-electronic-quantity" name="new-electronic-quantity" type="number" class="form-control" required/>
-                    </div>
-
-
-                    <div class="form-group">
-                        <input id="save-button" name="save-button" type="submit" value="Save"  class="btn btn-primary"  />
-                    </div>
-
-                </form>
+                    <div class="row">   
+                    <div class="modal-body">
+                        <div class="col-lg-6">
     
-    
+                            
+                            <form   id="new-electronic-form" action="#">   <!-- action="#" prevents page redirections when form is submited -->
+                              
+                                <div class="form-group">
+                                    <label>Type</label>
+                                    <input id="new-electronic-type" name="new-electronic-type" type="text" class="form-control" required/>
+                                </div>
+            
+                                <div class="form-group">
+                                    <label>Model</label>
+                                    <input id="new-electronic-model" name="new-electronic-model" type="text" class="form-control"  required/>
+                                </div>
+            
+                                <div class="form-group">
+                                    <label>Year</label>
+                                    <input id="new-electronic-year" name="new-electronic-year" type="number" class="form-control" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Price</label>
+                                    <input id="new-electronic-price" name="new-electronic-price" type="number" step=0.01 class="form-control" required/>
+                                </div>
+            
+                                <div class="form-group">
+                                    <label>WarehouseID</label>
+                                    <input id="new-electronic-warehouseID" name="new-electronic-warehouseID" type="number" class="form-control"required/>
+                                </div>
+            
+                                <div class="form-group">
+                                    <label>Quantity</label>
+                                    <input id="new-electronic-quantity" name="new-electronic-quantity" type="number" class="form-control" required/>
+                                </div>
+                                <!--  -->
+                                <h4 id="response-container-new"></h4>
+                                <!--  -->
+                                
+                                <div class="form-group">
+                                    <input id="save-button" name="save-button" type="submit" value="Save"  class="btn btn-primary"  />
+                                </div>
+            
+                            </form>
+                    </div>
+                    <div class="modal-footer">
+                        
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

@@ -6,14 +6,50 @@
     <title>Warehouse</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> -->
     <!-- <script src="index.js" defer></script> -->
     <script src="indexWh.js" defer></script>  
+    <style>
+        h4{
+        color: red;
+    }
+        .btn-primary{
+        margin-left: 10px;
+    }
+    </style>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Logo</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>  
+                   
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index2.html">warehouses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">electronics</a>
+                </li>
+               
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br/><br/><br/><br/>
     
-    <a href="index.html">Google Maps</a><br>
+    <button type="button1" id="sd" class="btn btn-primary" data-toggle="modal" data-target="#pop-up-form-modal">
+        add new warehouse
+    </button>
+
+    <br/><br/>
 
                 <!-- UPDATE MOVIE FORM -->
                 <!-- style="display: none;" makes it so that the DOM does not render this tag-->
@@ -36,9 +72,11 @@
                         <input id="update-warehouse-maxCapacity" name="update-warehouse-maxCapacity" type="number" class="form-control"  required/>
                     </div>
 
-                   
-
                     <div class="form-group">
+                        <label>currentStock</label>
+                        <input id="update-warehouse-currentStock" name="update-warehouse-currentStock" type="number" class="form-control"  disabled/>
+                    </div>
+                     <div class="form-group">
                         <button id="update-cancel-button" class="btn btn-secondary">Cancel</button>
                     </div>
 
@@ -47,7 +85,7 @@
                     </div>
 
                 </form>
-
+                <h4 id="response-warehouse-container-update"></h4>
                 <!-- DELETE MOVIE FORM -->
                 <!-- style="display: none;" makes it so that the DOM does not render this tag-->
                 <form id="delete-warehouse-form" action="#" style="display: none;">   <!-- action="#" prevents page redirections when form is submited -->
@@ -59,7 +97,7 @@
                         <input id="delete-warehouse-id" name="delete-warehouse-id" type="text" class="form-control" disabled/> 
                     </div>
                     
-                
+                    <h4 id="response-warehouse-container-delete"></h4>
 
                     <div class="form-group">
                         <button id="delete-cancel-button" class="btn btn-secondary">Cancel</button>
@@ -81,7 +119,8 @@
                         <tr>
                             <th>warehouseID</th>     <!-- no need to display to users -->
                             <th>location</th>
-                            <th>capacity</th>
+                            <th>Max Capacity</th>
+                            <th>currentStock</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
@@ -99,35 +138,61 @@
 
     <div class="container-fluid">
 
-        <h1 class="h1">Movies API</h1>
+       
 
         <!-- row so my table and form are next to each other -->
-        <div class="row">   
+        
 
             <!-- form takes up 6 columns (half the page) -->
-            <div class="col-lg-6">
+           
 
                 <!--NEW MOVIE FORM-->
-                <form   id="new-warehouse-form" action="#">   <!-- action="#" prevents page redirections when form is submited -->
-
-                    <div class="form-group">
-                        <label>Location</label>
-                        <input id="new-warehouse-location" name="new-warehouse-location" type="text" class="form-control" required/>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Max Capacity</label>
-                        <input id="new-warehouse-maxCapacity" name="new-warehouse-maxCapacity" type="number" class="form-control"  required/>
-                    </div>
-
-                    
-
-                    <div class="form-group">
-                        <input id="save-button" name="save-button" type="submit" value="Save"  class="btn btn-primary"  />
-                    </div>
-
-                </form>
+                
     
+
+                <div class="modal fade" id="pop-up-form-modal" tabindex="-1" role="dialog" aria-labelledby="pop-up-form-title" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="pop-up-form-title">Pop-up Form</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="row">   
+                            <div class="modal-body">
+                                <div class="col-lg-6">
+            
+                                    
+                                    <form   id="new-warehouse-form" action="#">   <!-- action="#" prevents page redirections when form is submited -->
+
+                                        <div class="form-group">
+                                            <label>Location</label>
+                                            <input id="new-warehouse-location" name="new-warehouse-location" type="text" class="form-control" required/>
+                                        </div>
+                    
+                                        <div class="form-group">
+                                            <label>Max Capacity</label>
+                                            <input id="new-warehouse-maxCapacity" name="new-warehouse-maxCapacity" type="number" class="form-control"  required/>
+                                        </div>
+                    
+                                        
+                                        <h4 id="response-warehouse-container-new"></h4>
+                                        <div class="form-group">
+                                            <input id="save-button" name="save-button" type="submit" value="Save"  class="btn btn-primary"  />
+                                        </div>
+                    
+                                    </form>
+                            </div>
+                            <div class="modal-footer">
+                                
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     
 </body>
 </html>

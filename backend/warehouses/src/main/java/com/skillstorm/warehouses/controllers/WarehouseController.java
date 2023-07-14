@@ -16,6 +16,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/warehouses")
+@CrossOrigin
+
 public class WarehouseController {
 
 
@@ -32,11 +34,10 @@ public class WarehouseController {
         return new ResponseEntity<List<Warehouse>>(warehouses, HttpStatus.OK);
     }
     @PostMapping("/add")
-    public ResponseEntity<Warehouse> addWarehous(@Valid @RequestBody Warehouse warehouse) {
+    public Message addWarehous(@Valid @RequestBody Warehouse warehouse) {
 
 
-        Warehouse newWarehouse = warehouseService.newWarehouse(warehouse);
-        return new ResponseEntity<Warehouse>(newWarehouse, HttpStatus.CREATED);
+        return warehouseService.newWarehouse(warehouse);
     }
     @DeleteMapping("/delete/{id}")
     public Message deleteByID(@PathVariable int id) {
