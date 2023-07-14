@@ -1,5 +1,7 @@
 package com.skillstorm.warehouses.messages;
 
+import java.util.Objects;
+
 public class Message {
     private String info;
 
@@ -11,4 +13,23 @@ public class Message {
         this.info = info;
     }
 
+    @Override
+    public String toString() {
+        return "Message{" +
+                "info='" + info + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Message)) return false;
+        Message message = (Message) o;
+        return getInfo().equals(message.getInfo());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getInfo());
+    }
 }

@@ -3,3 +3,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/warehouse
     username: postgres
     password: *****
+logging:
+  level:
+    com:
+      skillstorm: debug

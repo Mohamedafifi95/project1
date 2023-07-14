@@ -49,7 +49,7 @@ public class ElectronicsService {
             int maxQuantaty = maxC - currentStock;
 
             if (currentQuantity + currentStock < maxC) {
-                m.setInfo("saved");
+                m.setInfo("id : "+ electronic.getId() +" saved successfully");
                 warehouseRepository.updateAvailable(currentQuantity, electronic.getWarehouseID());
                 electronicRepository.save(electronic);
                 return m;
@@ -60,7 +60,7 @@ public class ElectronicsService {
             }
         }
         catch (NoSuchElementException ex){
-            m.setInfo("warehouse ID : " + electronic.getWarehouseID() +" is wrong");
+            m.setInfo("warehouse ID : " + electronic.getWarehouseID() +" is wrong ");
             return  m;
         }
         catch (Exception e){
