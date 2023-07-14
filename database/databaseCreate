@@ -1,0 +1,30 @@
+CREATE DATABASE bestsellwarehouses;
+
+CREATE TABLE warehouses (
+  warehouse_id serial PRIMARY KEY,
+	location TEXT  NOT NULL,
+	max_capacity INTEGER NOT NULL,
+	current_stock INTEGER  NOT NULL
+);
+
+CREATE TABLE electronics (
+
+  	electronic_id serial PRIMARY KEY,
+	model TEXT  NOT NULL,
+	type TEXT  NOT NULL,
+	year INTEGER NOT NULL,
+	price INTEGER  NOT NULL,
+	quantity INTEGER  NOT NULL,
+	warehouse_id INTEGER  NOT NULL,
+	FOREIGN KEY (warehouse_id) REFERENCES warehouses(warehouse_id)
+);
+ALTER SEQUENCE electronics_electronic_id_seq RESTART WITH 1000;
+
+INSERT INTO warehouses (location, max_capacity, current_stock)
+VALUES ('New York', 1000, 500);
+
+INSERT INTO electronics (model, type, year, price, quantity, warehouse_id)
+VALUES ('ABC123', 'Laptop', 2023, 1500, 10, 1);
+
+SELECT * FROM warehouses
+SELECT * FROM electronics
