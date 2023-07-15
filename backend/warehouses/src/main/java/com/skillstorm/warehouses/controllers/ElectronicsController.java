@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+//@CrossOrigin annotaion for enable the access from another port and we should specify the company baseurl
 @RestController
 @RequestMapping("/electronics")
-@CrossOrigin
+@CrossOrigin  //@CrossOrigin(origins = "http://localhost:5000")
 public class ElectronicsController {
     
 
@@ -22,7 +23,13 @@ public class ElectronicsController {
     @Autowired
     ElectronicsService electronicsService;
 
-
+/*
+* creating http requests
+* getMapping: for creating get request to get data from database and will reformat to JSON payload
+* postMapping: for creating post request to post JSON payload to and save it to the database
+* PUTMapping: for updating the record by PUT request to post JSON payload to and save it to the database
+* DELETEMapping:by passing record ID it will delete all record for this ID in the database
+ * */
 
     @GetMapping
     public ResponseEntity<List<Electronic>> findAllElectronics() {

@@ -9,30 +9,36 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> -->
-    <!-- <script src="index.js" defer></script> -->
-    <script src="indexWh.js" defer></script>  
+
+    <script src="indexWh.js" defer></script>
+
+    <!-- import bootstrap  -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <!--  internal css -->
     <style>
         h1{
             margin-left: 500px;
         }
         h4{
         color: red;
-    }
-    #sd{
-        margin-left: 15px;
-    }
-    #delete-frm{
-        margin-left: 300px;
-        background-color: lightgrey;}
-    #updt-frm {
-        margin-left: 300px;
-        background-color: lightgrey;
-    }
+        }
+        #sd{
+            margin-left: 15px;
+        }
+        #delete-frm{
+            margin-left: 300px;
+            background-color: lightgrey;}
+        #updt-frm {
+            margin-left: 300px;
+            background-color: lightgrey;
+        }
        
     </style>
 </head>
 <body>
+
+            <!-- having my navigation bar at the top with directing to electronic page or warehouse page  -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="index2.html">All Warehouses</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,32 +62,33 @@
     </nav>
 
     <br/><br/><br/><br/>
+
     <h1> BestSell Warehouses</h1>
     <br/><br/><br/><br/>
-    <button type="button1" id="sd" class="btn btn-secondary" data-toggle="modal" data-target="#pop-up-form-modal">
+    <button type="button" id="sd" class="btn btn-secondary" data-toggle="modal" data-target="#pop-up-form-modal">
         add new warehouse
     </button>
 
     <br/><br/>
 
-               
-               
+
+            <!-- where the JSON Response will be -->
                 <h4 id="response-warehouse-container-update"></h4>
-                <!-- DELETE MOVIE FORM -->
-                <!-- style="display: none;" makes it so that the DOM does not render this tag-->
+                <h4 id="response-warehouse-container-new"></h4>
+            <!-- creating delete form   -->
                 <div id = delete-frm class="col-lg-6">
-                <form id="delete-warehouse-form" action="#" style="display: none;">   <!-- action="#" prevents page redirections when form is submited -->
+                <form id="delete-warehouse-form" action="#" style="display: none;">
                     <h3>Delete Form</h3>
                     <div class="form-group">
                         <label>warehouse ID</label>
 
-                        <!--  disabling this field so the user cannot modify the id -->
-                        <input id="delete-warehouse-id" name="delete-warehouse-id" type="text" class="form-control" disabled/> 
+
+                        <input id="delete-warehouse-id" name="delete-warehouse-id" type="text" class="form-control" disabled/>
                     </div>
                     
                     <h4 id="response-warehouse-container-delete"></h4>
                     <div class="form-group">
-                        <input id="delete-button" class="btn btn-secondary" name="delete-button" type="submit" value="Delete" class="btn btn-primary" />
+                        <input id="delete-button" class="btn btn-secondary" name="delete-button" type="submit" value="Delete"  />
                     </div>
                     <div class="form-group">
                         <button id="delete-cancel-button" class="btn btn-secondary">Cancel</button>
@@ -91,16 +98,14 @@
 
                 </form>
             </div>
-
+            <!-- creating update form  -->
                 <div id = updt-frm class="col-lg-6">
-                    <!-- style="display: none;" makes it so that the DOM does not render this tag-->
-                    <form id="update-warehouse-form" action="#" style="display: none;">  <!--  action="#" prevents page redirections when form is submited-->
+                    <form id="update-warehouse-form" action="#" style="display: none;">
                        <h3>Update Form</h3>
                        <div class="form-group">
                            <label>electronic ID</label>
            
-                           <!--  disabling this field so the user cannot modify the id -->
-                           <input id="update-warehouse-id" name="update-warehouse-id" type="text" class="form-control" disabled/> 
+                           <input id="update-warehouse-id" name="update-warehouse-id" type="text" class="form-control" disabled/>
                        </div>
                        
                        <div class="form-group">
@@ -118,7 +123,7 @@
                            <input id="update-warehouse-currentStock" name="update-warehouse-currentStock" type="number" class="form-control"  disabled/>
                        </div>
                        <div class="form-group">
-                           <input id="update-button" class="btn btn-secondary" name="update-button" type="submit" value="Update" class="btn btn-primary" />
+                           <input id="update-button" class="btn btn-secondary" name="update-button" type="submit" value="Update"  />
                        </div>
                         <div class="form-group">
                            <button id="update-cancel-button" class="btn btn-secondary">Cancel</button>
@@ -129,14 +134,14 @@
                    </form>
            
                </div>
-
+            <!-- creating table  -->
             <div class="col-lg-12">
 
                 <table class="table table-primary table-hover">
-
+                    <!-- table head -->
                     <thead>
                         <tr>
-                            <th>warehouseID</th>     <!-- no need to display to users -->
+                            <th>warehouseID</th>
                             <th>location</th>
                             <th>Max Capacity</th>
                             <th>currentStock</th>
@@ -144,17 +149,17 @@
                             <th>Delete</th>
                         </tr>
                     </thead>
+                    <!-- table body -->
                     <tbody id="warehouse-table-body">
-                        <!-- we wil add rows dynamically using js -->
+
                     </tbody>
                 </table>
 
             </div>
 
-        </div>
-    </div>
+            <!-- create new item format-->
    
-    <div class="container-fluid">
+        <div class="container-fluid">
                 <div class="modal fade" id="pop-up-form-modal" tabindex="-1" role="dialog" aria-labelledby="pop-up-form-title" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
@@ -182,7 +187,7 @@
                                         </div>
                     
                                         
-                                        <h4 id="response-warehouse-container-new"></h4>
+
                                         <div class="form-group">
                                             <input id="save-button" name="save-button" type="submit" value="Save"  class="btn btn-primary"  />
                                         </div>
@@ -192,12 +197,15 @@
                             <div class="modal-footer">
                                 
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                             </div>
+                            </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
-                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-    
+            </div>
+
+
 </body>
 </html>

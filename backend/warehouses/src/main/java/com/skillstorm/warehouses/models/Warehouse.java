@@ -3,7 +3,10 @@ package com.skillstorm.warehouses.models;
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
-
+/*
+ * preparing POJO class by identifying table name and columns
+ *
+ * */
 @Entity
 @Table(name = "warehouses")
 public class Warehouse {

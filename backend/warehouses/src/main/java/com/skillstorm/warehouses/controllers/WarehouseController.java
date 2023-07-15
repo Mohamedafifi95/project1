@@ -26,7 +26,13 @@ public class WarehouseController {
     @Autowired
     ElectronicsService electronicsService;
 
-
+    /*
+     * creating http requests
+     * getMapping: for creating get request to get data from database and will reformat to JSON payload
+     * postMapping: for creating post request to post JSON payload to and save it to the database
+     * PUTMapping: for updating the record by PUT request to post JSON payload to and save it to the database
+     * DELETEMapping:by passing record ID it will delete all record for this ID in the database
+     * */
     @GetMapping
     public ResponseEntity<List<Warehouse>> findAllwarehoses() {
         List<Warehouse> warehouses = warehouseService.findAllwarehoses();

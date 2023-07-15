@@ -23,7 +23,11 @@ public class ElectronicsService {
 
     Message m = new Message();
 
-
+/*
+*
+* service methods it's to handle all the logics to the controller class
+*
+* */
     public  List<Electronic> findAllElectronics() {
         return electronicRepository.findAll();
     }

@@ -1,7 +1,7 @@
 
 const URL = 'http://localhost:8080';
 let allElectronics = [];
-
+//the DOM will be loaded and call GET http://localhost:8080/warehouses  to get electronics JSON response
 document.addEventListener('DOMContentLoaded', () => {
     let xhr = new XMLHttpRequest();
 
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-
+//once the submit button called get all data in NewForm and pass it to post request
 document.getElementById('new-electronic-form').addEventListener('submit', (event) => {
     event.preventDefault();
     let inputData = new FormData(document.getElementById('new-electronic-form'));
@@ -51,12 +51,11 @@ document.getElementById('new-electronic-form').addEventListener('submit', (event
       });
   
       
-        console.log("aa")
+
         let electronicJson = await returnedData.json();
-        console.log(electronicJson)
+
         document.getElementById('response-container-new').textContent = JSON.stringify(electronicJson.info);
-        // document.getElementById('response-container-new').innerText = JSON.stringify(electronicJson.info);
-      } 
+           }
     catch (error) {
       console.error('Error:', error);
     }
@@ -65,7 +64,7 @@ document.getElementById('new-electronic-form').addEventListener('submit', (event
   
   
 
-
+//creating the table by the data we got from DOM
 
 function addElectronicToTable(location, electronic) {
     let tr = document.createElement('tr');
@@ -120,22 +119,22 @@ document.getElementById('delete-cancel-button').addEventListener('click', (event
     resetAllForms();
     
 });
-
+// clears all data from all forms
 function resetAllForms() {
 
-    // clears data from all forms
+
     document.getElementById('new-electronic-form').reset();
     document.getElementById('update-electronic-form').reset();
     document.getElementById('delete-electronic-form').reset();
 
-    // dispalys only the new-movie-form
+
     document.getElementById('new-electronic-form').style.display = 'block';
     document.getElementById('update-electronic-form').style.display = 'none';
     document.getElementById('delete-electronic-form').style.display = 'none'; 
 }
 
 function activateEditForm(electronicId) {
-    // find the movie and its <tr> that needs to be edited
+
     for(let e of allElectronics) {
         if(e.id === electronicId) {
             document.getElementById('update-electronic-id').value = e.id;
@@ -148,15 +147,13 @@ function activateEditForm(electronicId) {
         }
     }
 
-    // showing only the edit form
-    // document.getElementById('new-electronic-form').style.display = 'none';
     document.getElementById('update-electronic-form').style.display = 'block';   // block is the default for showing a tag
     document.getElementById('delete-electronic-form').style.display = 'none';
 
 }
 
 function activateDeleteForm(electronicId) {
-    // find the movie and its <tr> that needs to be edited
+
     for(let e of allElectronics) {
         if(e.id === electronicId) {
             document.getElementById('delete-electronic-id').value = e.id;
@@ -166,7 +163,6 @@ function activateDeleteForm(electronicId) {
     }
 
   
-    // document.getElementById('new-electronic-form').style.display = 'none';
     document.getElementById('update-electronic-form').style.display = 'none';
     document.getElementById('delete-electronic-form').style.display = 'block';   // block is the default for showing a tag
     
@@ -178,7 +174,7 @@ function activateDeleteForm(electronicId) {
 
 
 
-
+//once the submit button called get all data in delete form and pass it to post request
 
   document.getElementById('delete-electronic-form').addEventListener('submit', (event) => {
     event.preventDefault();		
@@ -201,6 +197,7 @@ function activateDeleteForm(electronicId) {
     })
     
 });
+//once the submit button called get all data in update-form and pass it to post request
 document.getElementById('update-electronic-form').addEventListener('submit', (event) => {
 
     event.preventDefault();         
@@ -232,15 +229,13 @@ async function doPostRequest(updateElectronic) {
       },
       body : JSON.stringify(updateElectronic)      
   });
-console.log("aa")
+
   let electronicJson = await returnedData.json();
 
-  console.log(electronicJson)
+
   document.getElementById('response-container-update').innerText = JSON.stringify(electronicJson.info);
 
-// console.log(
-//     document.getElementById('response-container').innerText = JSON.stringify(electronicJson.info)
-//   )
+
   
    document.getElementById('update-electronic-form').reset();
 }

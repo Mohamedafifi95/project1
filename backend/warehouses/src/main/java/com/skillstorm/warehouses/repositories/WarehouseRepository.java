@@ -9,10 +9,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Repository;
 
-
+// JPARepository will give us build in methods as findAll and findById
 @Repository
 public interface WarehouseRepository extends JpaRepository<Warehouse, Integer> {
-
+    // query to update currentstock in postgresSQL
     @Query("UPDATE Warehouse SET currentStock = currentStock + :curntStk WHERE id = :wId")
     @Modifying
     @Transactional

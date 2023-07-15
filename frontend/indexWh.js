@@ -1,6 +1,7 @@
 
 const URL2 = 'http://localhost:8080';
 let allWarehouses = [];
+//the DOM will be loaded and call GET http://localhost:8080/warehouses  to get electronics JSON response
 
 document.addEventListener('DOMContentLoaded', () => {
     let xhr = new XMLHttpRequest();
@@ -21,7 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
     xhr.send();
 });
 
-// ...
+
+//once the submit button called get all data in NewForm and pass it to post request
 
 document.getElementById('new-warehouse-form').addEventListener('submit', (event) => {
     event.preventDefault();
@@ -56,8 +58,8 @@ document.getElementById('new-warehouse-form').addEventListener('submit', (event)
     }
   }
   
-  // ...
-  
+
+//creating the table by the data we got from DOM
 
 function addWarehouseToTable(newWarehouse) {
     let tr = document.createElement('tr');
@@ -76,8 +78,7 @@ function addWarehouseToTable(newWarehouse) {
     
 
     editBtn.innerHTML = `<button class="btn btn-primary" id="edit-button" onclick="activateEditForm(${newWarehouse.id})">Edit</button>`;
-    // editBtn1.innerHTML = `<button class="btn btn-primary" id="edit-button" onclick="activateEditForm(${newWarehouse.id})">Edit</button>`;
-   
+
     deleteBtn.innerHTML = `<button class="btn btn-primary" id="delete-button" onclick="activateDeleteForm(${newWarehouse.id})">Delete</button>`;
 
     tr.appendChild(id);
@@ -104,22 +105,22 @@ document.getElementById('delete-cancel-button').addEventListener('click', (event
     resetAllForms();
     
 });
-
+// clears all data from all forms
 function resetAllForms() {
 
-    // clears data from all forms
+
     document.getElementById('new-warehouse-form').reset();
     document.getElementById('update-warehouse-form').reset();
     document.getElementById('delete-warehouse-form').reset();
 
-    // dispalys only the new-movie-form
+
     document.getElementById('new-warehouse-form').style.display = 'block';
     document.getElementById('update-warehouse-form').style.display = 'none';
     document.getElementById('delete-warehouse-form').style.display = 'none'; 
 }
 
 function activateEditForm(warehouseId) {
-    // find the movie and its <tr> that needs to be edited
+
     for(let w of allWarehouses) {
         if(w.id === warehouseId) {
             document.getElementById('update-warehouse-id').value = w.id;
@@ -160,6 +161,7 @@ function activateDeleteForm(warehouseId) {
 
 
 
+//once the submit button called get all data in delete form and pass it to post request
 
 document.getElementById('delete-warehouse-form').addEventListener('submit', (event) => {
     event.preventDefault();		
@@ -181,6 +183,7 @@ document.getElementById('delete-warehouse-form').addEventListener('submit', (eve
     })
 
 });
+//once the submit button called get all data in update-form and pass it to post request
 
 document.getElementById('update-warehouse-form').addEventListener('submit', (event) => {
 

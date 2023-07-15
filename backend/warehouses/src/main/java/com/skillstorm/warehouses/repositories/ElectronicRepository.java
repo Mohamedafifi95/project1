@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 
-
+// JPARepository will give us build in methods as findAll and findById
 @org.springframework.stereotype.Repository
 public interface ElectronicRepository extends JpaRepository<Electronic, Integer> {
 

@@ -2,6 +2,9 @@ package com.skillstorm.warehouses.messages;
 
 import java.util.Objects;
 
+//this Message class is for setting the data response message for each HTTP request
+
+
 public class Message {
     private String info;
 
