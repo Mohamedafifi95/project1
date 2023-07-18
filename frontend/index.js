@@ -223,7 +223,7 @@ document.getElementById('update-electronic-form').addEventListener('submit', (ev
 async function doPostRequest(updateElectronic) {
 
   let returnedData = await fetch(URL + '/electronics/add', {
-      method : 'POST',
+      method : 'PUT',
       headers : {
           'Content-Type' : 'application/json'         
       },

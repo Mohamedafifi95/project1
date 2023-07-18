@@ -40,7 +40,7 @@ document.getElementById('new-warehouse-form').addEventListener('submit', (event)
   async function doPostRequest(newWarehouse) {
     try {
       let returnedData = await fetch(URL2 + '/warehouses/add', {
-        method: 'POST',
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
         },
